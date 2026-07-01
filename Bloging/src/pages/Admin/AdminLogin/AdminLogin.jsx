@@ -1,8 +1,16 @@
 import React from 'react'
+import styled from 'styled-components';
+
+const AdminLoginStyle = styled.div``;
+
 
 const AdminLogin = () => {
   return (
-    <div>AdminLogin</div>
+    <AdminLoginStyle>
+      <form>
+        <input/>
+      </form>
+    </AdminLoginStyle>
   )
 }
 
