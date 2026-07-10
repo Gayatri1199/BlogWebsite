@@ -36,6 +36,7 @@ import SignInWithGoogle from './SignInWithGoogle';
          <button type='submit'>Submit</button>
       </form>
       <SignInWithGoogle/>
+      <a href="/forgotPassword">Forgot Password?</a>
       </>
       
     )
@@ -62,7 +63,8 @@ import SignInWithGoogle from './SignInWithGoogle';
             await setDoc(doc(db,"Users",user.uid),{
               email:userCredentials.user.email,
               firstName:fname,
-              lastName:lname
+              lastName:lname,
+              photo:""
             });
             // form.reset();
           }

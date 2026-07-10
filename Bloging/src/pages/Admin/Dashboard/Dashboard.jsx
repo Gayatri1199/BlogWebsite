@@ -34,6 +34,8 @@ const Dashboard = () => {
   return (
     <div>{
         userDetails ? <>
+        {userDetails.photoURL===null ?  "" : <img src={userDetails.photoURL} alt="User Image"/>}
+       
           <p>Name : {userDetails.firstName} {userDetails.lastName}  {userDetails.displayName}</p>
           <p>Email: {userDetails.email}</p>
           <button onClick={handleLogOut}>Logout</button>

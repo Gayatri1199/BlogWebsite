@@ -10,6 +10,7 @@ import BlogInfo from "./pages/BlogInfo/BlogInfo"
 import AdminLogin from "./pages/Admin/AdminLogin/AdminLogin"
 import Dashboard from "./pages/Admin/Dashboard/Dashboard"
 import NoPage from "./pages/NoPage/NoPage"
+import ForgotPassword from "./pages/Admin/AdminLogin/ForgotPassword"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
            <Route path="/bloginfo/:id" element={<BlogInfo />}/>
             <Route path="/adminlogin" element={<AdminLogin />}/>
              <Route path="/dashboard" element={<Dashboard />}/>
+             <Route path="/forgotPassword" element={<ForgotPassword/>}/>
              <Route path="/*" element={<NoPage />}/>
         </Routes>
       </BrowserRouter>

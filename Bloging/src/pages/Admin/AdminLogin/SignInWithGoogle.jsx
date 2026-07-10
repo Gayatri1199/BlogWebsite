@@ -1,6 +1,7 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import React from 'react'
-import { auth } from '../../../Firebase/FirebaseConfig';
+import { auth, db } from '../../../Firebase/FirebaseConfig';
+import { doc, setDoc } from 'firebase/firestore';
 
 const SignInWithGoogle = () => {
     function googleLogin(){
@@ -11,8 +12,15 @@ const SignInWithGoogle = () => {
         console.log("Current User==>",auth.currentUser);
         signInWithPopup(auth,provider).then(async(result)=>{
             console.log("Result from Google Login",result);
+            const user = result.user;
             if(result.user){
-                     window.location.href="/dashboard"
+                await setDoc(doc(db,"Users",user.uid),{
+                              email:user.email,
+                              firstName:user.displayName,
+                              lastName:"",
+                              photo:""
+                            });
+                window.location.href="/dashboard"
             }
         })
     }
