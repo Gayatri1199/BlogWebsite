@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { auth, db } from '../../../Firebase/FirebaseConfig';
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, doc, getDoc } from 'firebase/firestore';
+import CreateBlog from '../CreateBlog/CreateBlog';
 
 const Dashboard = () => {
   const [userDetails,setUserDetails] = useState();
+  const [data,setData] = useState();
   const fetchUserData = async()=>{
     auth.onAuthStateChanged(async(user)=>{
       console.log(user);
@@ -16,6 +18,8 @@ const Dashboard = () => {
       // }
     });
   }
+
+  
 
   useEffect(()=>{
     fetchUserData();
@@ -39,6 +43,8 @@ const Dashboard = () => {
           <p>Name : {userDetails.firstName} {userDetails.lastName}  {userDetails.displayName}</p>
           <p>Email: {userDetails.email}</p>
           <button onClick={handleLogOut}>Logout</button>
+          <CreateBlog/>
+         
         </> : <p>Loading...</p>
       }</div>
   )
