@@ -10,12 +10,6 @@ const Dashboard = () => {
     auth.onAuthStateChanged(async(user)=>{
       console.log(user);
       setUserDetails(user);
-      // const docRef = doc(db,"Users",user.uid);
-      // const docSnap = await getDoc(docRef);
-      // if(docSnap.exists()){
-      //   setUserDetails(docSnap.data());
-      //   console.log("User Details==>",docSnap.data())
-      // }
     });
   }
 
@@ -43,7 +37,7 @@ const Dashboard = () => {
           <p>Name : {userDetails.firstName} {userDetails.lastName}  {userDetails.displayName}</p>
           <p>Email: {userDetails.email}</p>
           <button onClick={handleLogOut}>Logout</button>
-          <CreateBlog/>
+          <CreateBlog page="dashboard"/>
          
         </> : <p>Loading...</p>
       }</div>

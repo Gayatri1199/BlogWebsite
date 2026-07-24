@@ -1,9 +1,9 @@
-import { addDoc, collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db, storage } from '../../../Firebase/FirebaseConfig';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
-const CreateBlog = () => {
+const CreateBlog = ({page}) => {
   const[heading,setHeading] = useState();
   const[content,setContent] = useState();
   const[image,setImage] = useState(); 
@@ -54,7 +54,23 @@ const CreateBlog = () => {
     
   }
 
+  const deleteBlog = async (id) => {
+  try {
+    await deleteDoc(doc(db, "userDataForBlog", id));
+
+    setData((prevBlogs) => prevBlogs.filter((blog) => blog.id !== id));
+
+    alert("Blog deleted successfully");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
   
+
+  useEffect(() => {
+  getData();
+}, []);
 
   console.log("From createBlog==>",heading,content,image,selectedRole)
   return (
@@ -87,6 +103,8 @@ const CreateBlog = () => {
                 <p>Category : {data.Category}</p>
                 <h2>Heading: {data.Heading}</h2>
                 <p>Content : {data.Content}</p>
+                {page==="dashboard" ? <p onClick={()=>{deleteBlog(data.id)}}>DELETE</p> :""}
+                
               </div>
             })
           }
