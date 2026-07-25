@@ -1,4 +1,4 @@
-import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, orderBy, query, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db, storage } from '../../../Firebase/FirebaseConfig';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
@@ -10,6 +10,7 @@ const CreateBlog = ({page}) => {
   const [selectedRole, setSelectedRole] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [authorName, setAuthorName] = useState(null);
+  const [editId, setEditId] = useState(null);
   const[data,setData] = useState();
 
       const getData =async ()=>{
@@ -37,13 +38,27 @@ const CreateBlog = ({page}) => {
   const saveDatatoFireStore = async (e) => {
     e.preventDefault();
     try{
-      const dbRef = collection(db,"userDataForBlog");
-      // const fileRef = ref(storage, `user_images/${Date.now()}_${imageFile}`);
-      // const snapshot = await uploadBytes(fileRef, imageFile);
-      // const imageUrl = await getDownloadURL(snapshot.ref);
-      await addDoc(dbRef,{Heading:heading,Content:content,Category:selectedRole,ImageUrl: "http://images.unsplash.com/photo-1783597165290-8ebe8a01a76e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",AuthorName : authorName,CreatedAt: new Date()})
+      if(editId){
+        const dbRef = doc(db,"userDataForBlog",editId);
+        await updateDoc(dbRef,{
+        Heading: heading,
+        Content: content,
+        Category: selectedRole,
+      })
+      alert("Blog updated successfully");
+      setEditId(null);
+      }else{
+        const dbRef = collection(db,"userDataForBlog");
+        await addDoc(dbRef,{Heading:heading,Content:content,Category:selectedRole,ImageUrl: "http://images.unsplash.com/photo-1783597165290-8ebe8a01a76e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",AuthorName : authorName,CreatedAt: new Date()})
+         alert("Blog saved successfully");
+      }
+      
+      
       getData();
-      alert("Blog has been saved");
+      setHeading("");
+      setContent("");
+      setAuthorName("");
+      setSelectedRole("");
     }catch(error){
       alert(error)
     }
@@ -64,6 +79,14 @@ const CreateBlog = ({page}) => {
   } catch (error) {
     console.log(error);
   }
+};
+
+const editBlog = (blog) => {
+  setEditId(blog.id);
+  setHeading(blog.Heading);
+  setContent(blog.Content);
+  setAuthorName(blog.AuthorName);
+  setSelectedRole(blog.Category);
 };
 
   
@@ -103,7 +126,7 @@ const CreateBlog = ({page}) => {
                 <p>Category : {data.Category}</p>
                 <h2>Heading: {data.Heading}</h2>
                 <p>Content : {data.Content}</p>
-                {page==="dashboard" ? <p onClick={()=>{deleteBlog(data.id)}}>DELETE</p> :""}
+                {page==="dashboard" ? <><p onClick={()=>{deleteBlog(data.id)}}>DELETE</p>< button onClick={() => editBlog(data)}>Edit</button> </>:""}
                 
               </div>
             })
