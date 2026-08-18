@@ -60,6 +60,7 @@ import SignInWithGoogle from './SignInWithGoogle';
           
           if(user){
             console.log("Entered in User")
+            window.location.href="/dashboard";
             await setDoc(doc(db,"Users",user.uid),{
               email:userCredentials.user.email,
               firstName:fname,
@@ -112,7 +113,7 @@ const AdminLogin = () => {
   return (
     // <AdminLoginStyle>
     <>
-      {/* <Register/> */}
+      <Register/>
       <LogIn/>
     </>
     // </AdminLoginStyle>

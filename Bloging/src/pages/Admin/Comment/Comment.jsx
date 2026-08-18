@@ -6,6 +6,7 @@ const Comment = ({postId}) => {
   const[userName,setUserName] = useState();
   const[text,setText] = useState();
   const[allComments,setAllComments] = useState([])
+  const[showForm,setShowForm] = useState(false)
 
   useEffect(()=>{
     const q=query(collection(db,'comments'),where('postId',"==",postId),orderBy('createdAt','desc'));
@@ -29,6 +30,9 @@ const Comment = ({postId}) => {
         text:text,
         createdAt: serverTimestamp()
       })
+      setShowForm(false);
+      setUserName("");
+      setText("");
 
     }catch(error){
       console.log("Error in comments==>",error)
@@ -37,10 +41,11 @@ const Comment = ({postId}) => {
 
 
   return (
-    <div style={{ maxWidth: '500px', margin: '20px auto', fontFamily: 'sans-serif' }}>
-      <h3>Comments ({allComments.length})</h3>
-
-      {/* FORM: COMMENT LIKHNE KE LIYE */}
+    <div>
+      <h3>  <i class="fa-regular fa-comment" onClick={()=>{setShowForm(!showForm)}}></i> ({allComments.length})</h3>
+     
+      {showForm ? <>
+         {/* FORM: COMMENT LIKHNE KE LIYE */}
       <form onSubmit={handleCommentSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
         <input 
           type="text" 
@@ -60,10 +65,13 @@ const Comment = ({postId}) => {
         </button>
       </form>
 
+      </> : null}
+     
+
       {/* LIST: COMMENTS SHOW KARNE KE LIYE */}
-      <div style={{ marginTop: '20px' }}>
+      <div>
         {allComments.map((c) => (
-          <div key={c.id} style={{ borderBottom: '1px solid #ccc', padding: '10px 0' }}>
+          <div key={c.id} style={{ padding: '10px 0' }}>
             <strong>{c.userName}</strong>
             <p style={{ margin: '5px 0' }}>{c.text}</p>
           </div>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        "use strict"
+        const cart = ["shoes","pants","kurta"];
+        // api.createOrder(cart,function(){
+        //     api.proceedToPayment(function(){
+        //         api.showOrderSummary(function(){
+        //             api.updateWallet();
+        //         })
+        //     });
+        // }); Callback Hell which creates IOC(Inversion of Control)
+        
+        // createOrder(cart,function(){
+        //     proceedToPayment(orderId); // Once the order is created 
+        // }); //orders are created --> orderId
+
+        // const promise = createOrder(cart);
+        // promise.then(function(orderId){
+        //     proceedToPayment(orderId);
+        // })
+
+        // const GITHUB_API= "http://api.github.com/users/akshaymarch7"
+        // const user = fetch(GITHUB_API);
+        // console.log(user)
+        // user.then(function(data){
+        //     console.log("data==>",data)
+        // })
+
+
+        // api.createOrder(cart,function(){
+        //     api.proceedToPayment(function(){
+        //         api.showOrderSummary(function(){
+        //             api.updateWallet();
+        //         })
+        //     });
+        // });
+
+        // This section in case of promises will look like this
+
+        // createOrder(cart)
+        // .then(function(orderId){
+        //     return proceedToPayment(orderId);
+        // })
+        // .then(function(paymentInfo){
+        //     return showOrderSummary(paymentInfo);
+        // })
+        // .then(function(paymentInfo){
+        //     return updateWallet(paymentInfo);
+        // })
+
+        // Promise Chain
+        // const promise = createOrder(cart);
+        // promise.then(function(orderId){
+        //     console.log(orderId);
+        //     return orderId;
+        // })
+        // .then(function(orderId){
+        //     return proceedToPayment(orderId);
+        // })
+        // .then(function(paymentInfo){
+        //     console.log(paymentInfo)
+        // })
+        // .catch(function(err){
+        //     console.log(err.message);
+        // })
+
+        //Producer of Promise
+        // function createOrder(cart){
+        //     const pr = new Promise(function(resolve,reject){
+        //         //create order
+        //         // validate cart
+        //         //orderId
+        //         if(!validateCart(cart)){
+        //             const err = new Error("Cart is not valid");
+        //             reject(err);
+        //         }
+
+        //         //Logic for createOrder
+        //         const orderId = "123456";
+        //         if(orderId){
+        //             setTimeout(function(){
+        //                 resolve(orderId);
+        //             },5000);    
+        //         }
+        //     });
+        //     return pr;
+        // }
+
+
+        // function validateCart(){
+        //     return true;
+        // }
+
+        // function proceedToPayment(orderId){
+        //     return new Promise(function(resolve,reject){
+        //         resolve("Payment Successfull");
+        //     })
+        // }
+
+        //Async Await
+
+        const p1=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve("Promise Resolved Value");
+            },10000)
+            
+        })
+
+        const p2=new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve("Promise Resolved Value");
+            },20000)
+            
+        })
+
+
+        //Always return a promise
+        // async function getData(){
+        //     return p;
+        // }
+
+        // const dataPromise = getData();
+
+        // dataPromise.then((res)=>{console.log("Response==>",res)})
+
+        //Async with await
+        const GITHUB_API= "http://api.github.com/users/akshaymarch7"
+        async function handlePromise() {
+            // const val = await p1; // JS Engine will wait here 
+            // console.log("Hello after Promise")
+            // console.log("Val==>",val);
+
+            // const val2 = await p2; // JS Engine will wait here 
+            // console.log("Hello after Promise2")
+            // console.log("Val2==>",val);
+
+
+            
+            // try{
+            //     const data = await fetch(GITHUB_API);
+            //     const jsonValue = await data.json();
+            //     console.log("Value==>",jsonValue,data);
+            // }
+            // catch(err){
+            //     console.log(err.message);
+            // }
+        }
+
+        // handlePromise();
+
+    //    function getData(){
+    //     //JS Engine wont wait for the promise to be resolved
+    //         p.then((res)=>console.log(res))
+    //         console.log("Hello after Promise")
+    //     }
+    //     getData();
+
+
+    // Code Examples of Promises
+        // const newP1 =new Promise((resolve,reject)=>{
+        //     setTimeout(()=>{reject("newP1 Success")},3000)
+        // })
+
+        //  const newP2 =new Promise((resolve,reject)=>{
+        //     setTimeout(()=>{reject("newP2 Success")},1000);
+        //     // setTimeout(()=>{reject("newP2 Fail")},1000)
+        // })
+
+        //  const newP3 =new Promise((resolve,reject)=>{
+        //     // setTimeout(()=>{resolve("newP3 Success")},2000)
+        //     setTimeout(()=>{reject("newP3 Fail")},500)
+        // })
+
+        // Promise.all([newP1,newP2,newP3]).then(res=>{
+        //     console.log("Success for Promise All",res);
+        // }).catch((err)=>{
+        //     console.error(err);
+        // })
+
+        //  Promise.allSettled([newP1,newP2,newP3]).then(res=>{
+        //     console.log("Success for Promise All",res);
+        // }).catch((err)=>{
+        //     console.error(err);
+        // })
+
+        //  Promise.race([newP1,newP2,newP3]).then(res=>{
+        //     console.log("Success for Promise All",res);
+        // }).catch((err)=>{
+        //     console.error(err);
+        // })
+
+        // Promise.any([newP1,newP2,newP3]).then(res=>{
+        //     console.log("Success for Promise All",res);
+        // }).catch((err)=>{
+        //     console.error(err);
+        // })
+
+        //this Keyword
+        
+        console.log(this); // represents global object
+
+        function x(){
+            // The value will depend upon strict and non strict mode
+            console.log("From function==>",this);
+        }
+
+        x();
+        window.x();
+
+        //this inside a object's method
+        const obj = {
+            a:10,
+            x:function(){ // Now x is known as method
+                console.log("From Object Method==>",this)
+            }
+        }
+
+        obj.x();
+
+        const student= {
+            name:"Akshay",
+            printname:function(){
+                console.log(this.name)
+            }
+        }
+
+        student.printname();
+
+        const student2= {
+            name:"Deepika"
+        }
+
+        student.printname.call(student2);
+
+        //this inside a arrow function
+        const objNew={
+            name:"Gayatri",
+            x:()=>{
+                console.log("value of this keyword in arrow func==>",this)
+            }
+        }
+
+        objNew.x();
+
+         const objNew1={
+            name:"Gayatri",
+            x:function(){
+                // enclosing lexical context
+                const yn = ()=>{
+                    console.log("value of this keyword in arrow func i/s a func==>",this)
+                }
+                yn();
+            }
+        }
+
+
+        objNew1.x();
+
+        //call, apply, bind
+        const name = {
+            firstName:"Akshay",
+            lastName:"Saini",
+            printFullName: function(){
+                console.log(this.firstName+" "+this.lastName)
+            }
+        } 
+
+        name.printFullName();
+
+        const name2 = {
+            firstName:"Sachin",
+            lastName:"Tendulkar",
+        }
+        //function borrowing
+        name.printFullName.call(name2);
+
+    </script>
+</head>
+<body>
+    <p>Hello</p>
+</body>
+</html>

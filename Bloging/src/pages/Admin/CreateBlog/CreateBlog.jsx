@@ -13,6 +13,7 @@ import React, { useEffect, useState } from "react";
 import { db, storage } from "../../../Firebase/FirebaseConfig";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import Comment from "../Comment/Comment";
+import { auth } from "../../../Firebase/FirebaseConfig";
 
 const CreateBlog = ({ page,category }) => {
   const [heading, setHeading] = useState();
@@ -27,7 +28,16 @@ const CreateBlog = ({ page,category }) => {
   const getData = async (category) => {
     try {
       const blogRef = collection(db, "userDataForBlog");
-      const q = query(blogRef, orderBy("CreatedAt"));
+      let q;
+      if (page === "dashboard") {
+      q = query(
+        blogRef,
+        where("UserId", "==", auth.currentUser.uid),
+        orderBy("CreatedAt")
+      );
+    } else {
+      q = query(blogRef, orderBy("CreatedAt"));
+    }
       const querySnapshot = await getDocs(q);
       const fetchedData = querySnapshot.docs.map((doc) => {
         const userData = doc.data();
@@ -64,6 +74,7 @@ const CreateBlog = ({ page,category }) => {
             "http://images.unsplash.com/photo-1783597165290-8ebe8a01a76e?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           AuthorName: authorName,
           CreatedAt: new Date(),
+          UserId: auth.currentUser.uid, 
         });
         alert("Blog saved successfully");
       }
@@ -98,9 +109,10 @@ const CreateBlog = ({ page,category }) => {
     setSelectedRole(blog.Category);
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+ useEffect(() => {
+  if (page === "dashboard" && !auth.currentUser) return;
+  getData();
+}, [page]);
 
   console.log("From createBlog==>", heading, content, image, selectedRole);
   return (

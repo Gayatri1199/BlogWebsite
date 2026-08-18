@@ -48,21 +48,26 @@ const Blog = ({ category }) => {
     getData();
   }, []);
   return (
-    <div>
+    <div className="blog-section">
       {data ? (
-        <>
+        <div className="blog-section-inner ">
           {data.map((data) => {
             return (
-              <div key={data.id} onClick={() => navigate(`/bloginfo/${data.id}`)}>
-                <h1>NAme : {data.AuthorName}</h1>
-                <p>Category : {data.Category}</p>
-                <h2>Heading: {data.Heading}</h2>
-                <p>Content : {data.Content}</p>
-                <Comment postId={data.id} />
+              <div key={data.id}  className="blog-card relative">
+                <p className="text-[#ea9497] font-bold text-center text-xs! mb-3"> <span className="sec-font">By</span> {data.AuthorName}</p>
+                <div className="h-[300px] flex items-center justify-center bg-[#d4d4d4]">
+                    <img src="https://cheerup2.theme-sphere.com/miranda/wp-content/uploads/sites/4/2016/08/logo-2x.png" className="max-w-[400px]"/>
+                </div>
+                <h2 className="text-2xl font-bold heading">{data.Heading}</h2>
+                <p className="max-w-max p-1 px-3 bg-[#ea9497] text-[#d4d4d4] text-[12px] absolute top-3 right-3">{data.Category}</p>
+                <p className="text-[#666] content">{data.Content}</p>
+                
+               <p onClick={() => navigate(`/bloginfo/${data.id}`)} className="text-[#ea9497] uppercase font-bold max-w-max m-auto my-4">CONTINUE READING</p>
+                <Comment postId={data.id} /> 
               </div>
             );
           })}
-        </>
+        </div>
       ) : null}
     </div>
   );
