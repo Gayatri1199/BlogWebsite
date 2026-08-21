@@ -117,8 +117,8 @@ const CreateBlog = ({ page,category }) => {
   console.log("From createBlog==>", heading, content, image, selectedRole);
   return (
     <div>
-      CreateBlog
-      <form onSubmit={saveDatatoFireStore}>
+      
+      <form onSubmit={saveDatatoFireStore} className="mb-3">
         <input
           type="text"
           placeholder="Enter blog heading"
@@ -126,6 +126,7 @@ const CreateBlog = ({ page,category }) => {
           onChange={(e) => {
             setHeading(e.target.value);
           }}
+          className="block mb-2"
         />
         <input
           type="text"
@@ -134,6 +135,7 @@ const CreateBlog = ({ page,category }) => {
           onChange={(e) => {
             setAuthorName(e.target.value);
           }}
+          className="block mb-2"
         />
         <textarea
           placeholder="Enter Blog content"
@@ -141,11 +143,13 @@ const CreateBlog = ({ page,category }) => {
           onChange={(e) => {
             setContent(e.target.value);
           }}
+          className="block mb-2"
         />
         <select
           id="role-select"
           value={selectedRole}
           onChange={(e) => setSelectedRole(e.target.value)}
+          className="block mb-2"
         >
           <option>Select blog category</option>
           <option value="Tech">Tech</option>
@@ -162,6 +166,7 @@ const CreateBlog = ({ page,category }) => {
             setImage(e.target.value);
           }}
           accept="image/*" // Restricts picker window to image file types
+          className="block mb-2"
         />
         <button type="submit">Submit</button>
       </form>

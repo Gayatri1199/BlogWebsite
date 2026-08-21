@@ -25,6 +25,7 @@ function App() {
           <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/fashion" element={<CategoryPage category="Fashion"/>}/>
           <Route path="/tech" element={<CategoryPage category="Tech"/>}/>
+          <Route path="/sport" element={<CategoryPage category="Sport"/>}/>
           <Route path="/*" element={<NoPage />} />
         </Routes>
       </BrowserRouter>

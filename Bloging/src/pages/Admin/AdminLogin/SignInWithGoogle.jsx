@@ -26,8 +26,8 @@ const SignInWithGoogle = () => {
     }
   return (
     <div>
-        <span>Or sign in with</span>
-         <p onClick={googleLogin}>Gmail Login</p>
+        <span className='block text-center'>Or sign in with</span>
+         <p onClick={googleLogin} className='text-center'>Gmail Login</p>
     </div>
   )
 }

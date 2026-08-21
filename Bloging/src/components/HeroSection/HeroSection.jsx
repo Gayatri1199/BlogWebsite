@@ -23,7 +23,13 @@ img{
 
 p{
   font-family: "Edu NSW ACT Cursive", cursive;
-  font-size:100px;
+  font-size:60px;
+  @media screen and (min-width:768px){
+    font-size:80px;
+  }
+  @media screen and (min-width:1260px){
+    font-size:100px;
+  }
 }
 `;
 

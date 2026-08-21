@@ -56,7 +56,7 @@ const Blog = ({ category }) => {
               <div key={data.id}  className="blog-card relative">
                 <p className="text-[#ea9497] font-bold text-center text-xs! mb-3"> <span className="sec-font">By</span> {data.AuthorName}</p>
                 <div className="h-[300px] flex items-center justify-center bg-[#d4d4d4]">
-                    <img src="https://cheerup2.theme-sphere.com/miranda/wp-content/uploads/sites/4/2016/08/logo-2x.png" className="max-w-[400px]"/>
+                    <img src="https://cheerup2.theme-sphere.com/miranda/wp-content/uploads/sites/4/2016/08/logo-2x.png" className="max-w-[400px] w-[80%]"/>
                 </div>
                 <h2 className="text-2xl font-bold heading">{data.Heading}</h2>
                 <p className="max-w-max p-1 px-3 bg-[#ea9497] text-[#d4d4d4] text-[12px] absolute top-3 right-3">{data.Category}</p>

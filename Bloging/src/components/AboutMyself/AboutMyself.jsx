@@ -46,7 +46,7 @@ const AboutMyself = () => {
     <AboutMyselfStyle className='min-w-[300px]'>
       <div className='myself-section p-6 pt-0 mb-20'>
         <h3 className='text-center py-4'>ABOUT</h3>
-        <img src="https://cheerup2.theme-sphere.com/miranda/wp-content/uploads/sites/4/2016/08/Untitled-3.jpg" alt="Author Image"/>
+        <img src="https://cheerup2.theme-sphere.com/miranda/wp-content/uploads/sites/4/2016/08/Untitled-3.jpg" alt="Author Image" className='w-full'/>
         <p>I'm Shane, a girly girl and lover of life. Join me on the journey to find latest in fashion.</p>
       </div>
       <div className='myself-section mb-20'>

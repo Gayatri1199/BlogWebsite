@@ -17,6 +17,10 @@ const NavbarStyle=styled.div`
 
   .navs{
     margin-top:40px;
+    gap:25px;
+    @media screen and (min-width:768px){
+      gap:80px;
+    }
   }
   
 `;
@@ -28,11 +32,13 @@ function Navbar() {
       <Link to="/" className='max-w-max d-block img-url'>
         <img src="https://cheerup2.theme-sphere.com/miranda/wp-content/uploads/sites/4/2016/08/logo-2x.png"/>
       </Link>
-      <div className='p-4 border-t border-[#e7e7e9] navs flex justify-center gap-x-36'>
-        <Link className='text-sm'>HOME</Link>
-        <Link className='text-sm'>ABOUT</Link>
-        <Link className='text-sm'>TRAVEL</Link>
-        <Link className='text-sm'>LIFESTYLE</Link>
+      <div className='p-4 border-t border-[#e7e7e9] navs flex justify-center desk:gap-x-36'>
+        <Link className='text-sm' to="/">HOME</Link>
+        <Link className='text-sm' to="/about">ABOUT</Link>
+        <Link className='text-sm' to="/tech">TRAVEL</Link>
+        <Link className='text-sm' to="/tech">LIFESTYLE</Link>
+        <Link className='text-sm' to="/adminLogin">Login/SignUp</Link>
+
       </div>
     
     </NavbarStyle>
