@@ -9,9 +9,9 @@ const SignInWithGoogle = () => {
         provider.setCustomParameters({
             prompt:"select_account",
         });
-        console.log("Current User==>",auth.currentUser);
+     
         signInWithPopup(auth,provider).then(async(result)=>{
-            console.log("Result from Google Login",result);
+            
             const user = result.user;
             if(result.user){
                 await setDoc(doc(db,"Users",user.uid),{

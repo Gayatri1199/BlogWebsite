@@ -34,11 +34,11 @@ function LogIn() {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("User Login Successfully");
+      
       window.location.href = "/dashboard";
       // form.reset();
     } catch (error) {
-      console.log("Error from Login==>", error.message);
+      
     }
   };
   return (
@@ -53,7 +53,7 @@ function LogIn() {
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
-            console.log(e.target.value);
+           
           }}
         />
         <h2>Password</h2>
@@ -64,7 +64,7 @@ function LogIn() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            console.log(e.target.value);
+           
           }}
         />
         <a href="/forgotPassword">Forgot Password?</a>
@@ -91,12 +91,12 @@ function Register() {
         displayName: `${fname} ${lname}`,
       });
       const user = auth.currentUser;
-      console.log("User==>", user);
+     
 
       toast.success("You are registered now!!!", { position: "top-center" });
 
       if (user) {
-        console.log("Entered in User");
+        
         window.location.href = "/dashboard";
         await setDoc(doc(db, "Users", user.uid), {
           email: userCredentials.user.email,
@@ -128,7 +128,7 @@ function Register() {
           value={fname}
           onChange={(e) => {
             setFname(e.target.value);
-            console.log(e.target.value);
+           
           }}
         />
         <h2>LastName</h2>
@@ -139,7 +139,7 @@ function Register() {
           value={lname}
           onChange={(e) => {
             setLname(e.target.value);
-            console.log(e.target.value);
+           
           }}
         />
 
@@ -151,7 +151,7 @@ function Register() {
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
-            console.log(e.target.value);
+           
           }}
         />
         <h2>Password</h2>
@@ -162,7 +162,7 @@ function Register() {
           value={password}
           onChange={(e) => {
             setPassword(e.target.value);
-            console.log(e.target.value);
+           
           }}
         />
         <button

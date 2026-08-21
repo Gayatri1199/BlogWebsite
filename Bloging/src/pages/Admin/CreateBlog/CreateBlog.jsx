@@ -46,7 +46,7 @@ const CreateBlog = ({ page,category }) => {
           ...userData,
         };
       });
-      console.log(fetchedData);
+      
       setData(fetchedData);
     } catch (error) {
       console.log("Error From Homepage Dahboard==>", error);
@@ -114,7 +114,7 @@ const CreateBlog = ({ page,category }) => {
   getData();
 }, [page]);
 
-  console.log("From createBlog==>", heading, content, image, selectedRole);
+ 
   return (
     <div>
       

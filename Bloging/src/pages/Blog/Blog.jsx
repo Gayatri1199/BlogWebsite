@@ -14,7 +14,7 @@ import Comment from "../Admin/Comment/Comment";
 const Blog = ({ category }) => {
   const [data, setData] = useState();
   const navigate = useNavigate();
-  console.log("Category From blog==>", category);
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -39,7 +39,7 @@ const Blog = ({ category }) => {
             ...userData,
           };
         });
-        console.log(fetchedData);
+    
         setData(fetchedData);
       } catch (error) {
         console.log("Error From Homepage==>", error);

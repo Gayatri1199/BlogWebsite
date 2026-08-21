@@ -8,7 +8,7 @@ const Dashboard = () => {
   const [data, setData] = useState();
   const fetchUserData = async () => {
     auth.onAuthStateChanged(async (user) => {
-      console.log(user);
+     
       setUserDetails(user);
     });
   };
