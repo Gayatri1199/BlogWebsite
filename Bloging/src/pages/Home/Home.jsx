@@ -45,7 +45,7 @@ const HomeStyle = styled.div`
       object-fit: contain;
       @media screen and (min-width: 1260px) {
         width: 100%;
-        object-fit: cover;
+     
       }
     }
   }
@@ -64,7 +64,7 @@ const Home = () => {
 
         <div className="max-w-[1320px] blog-container">
           <MainCategory />
-          <div className="desk:flex">
+          <div className="lg:flex">
             <Blog />
             <AboutMyself />
           </div>
